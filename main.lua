@@ -28,6 +28,12 @@ girl1.y = 500
 girl2.x = 300
 girl2.y = 200
 
+-- creating sound variable
+local Sound1 = audio.loadSound("Sounds/KidLaughing.mp3") 
+local Sound2 = audio.loadSound("Sounds/Screaming.mp3")
+local laughing
+local screaming 
+
 --Funtion: Girl1Listener
 --Input: touch listener
 --Output: none
@@ -35,6 +41,7 @@ girl2.y = 200
 local function Girl1Listener(touch)
 	if (touch.phase == "began") then
 		if (alreadyTouchedGirl2 == false) then
+			laughing = audio.play(Sound1)
 			alreadyTouchedGirl1 = true
 		end
 	end
@@ -59,6 +66,7 @@ girl1:addEventListener("touch", Girl1Listener)
 local function Girl2Listener(touch)
 	if (touch.phase == "began") then
 		if (alreadyTouchedGirl1 == false) then
+			screaming = audio.play(Sound2)
 			alreadyTouchedGirl2 = true
 		end
 	end
@@ -73,3 +81,5 @@ local function Girl2Listener(touch)
 		alreadyTouchedGirl1 = false
 	end
 end
+
+girl2:addEventListener("touch", Girl2Listener)
